@@ -38,14 +38,14 @@ let getDistricts = async function (req, res) {
     }
 }
 
-let getByPin = async function (req, res) {
+let getByDistId = async function (req, res) {
     try {
-        let pin = req.query.pincode
+        let DisId = req.query.DisId
         let date = req.query.date
-        console.log(`query params are: ${pin} ${date}`)
+        console.log(`query params are: ${DisId} ${date}`)
         var options = {
             method: "get",
-            url: `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${pin}&date=${date}`
+            url: `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict${DisId}&date=${date}`
         }
         let result = await axios(options)
         console.log(result.data)
@@ -81,5 +81,5 @@ let getOtp = async function (req, res) {
 
 module.exports.getStates = getStates
 module.exports.getDistricts = getDistricts
-module.exports.getByPin = getByPin
+module.exports.getByDistId = getByDistId
 module.exports.getOtp = getOtp
